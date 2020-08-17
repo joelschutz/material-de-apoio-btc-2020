@@ -31,4 +31,80 @@ Os conceitos fundamentais:
 - Livros:
     - [Python Data Science Handbook](https://github.com/jakevdp/PythonDataScienceHandbook) por Jake VanderPlas
 
+### Scikit-Learn
+Na hora de criar modelos de Machine Learning existem diversos algorítmos, métricas, pré-processamentos e outras técnicas utilizadas para tratar os dados, treinar e avaliar modelos. Uma das bibliotecas mais utilizada para esse propósito é o Scikit-Learn que reúne várias ferramentas num único pacote. Alguns conceitos básicos:
+- Estimator API: Com o intúito de facilitar a utilização dos modelos, essa biblioteca instituiu um padrão que todo modelo deve seguir, de forma que uma vez entendendo como usar um modelo os outros são praticamente idênticos. Os passos são:
+    - Importe a classe do modelo: ex.`from sklearn.linear_model import LinearRegression`
+    - Instancie o modelo com parâmetros desejados. Caso não especifique parâmetros, valores padrão serão utilizados: ex `model = LinearRegression(fit_intercept=True`)
+    - Ajuste o modelo a seus dados utilizando o método `fit()`(Esse passo também é conhecido como treino): ex. `model.fit(X, y)`
+    - Utilize o modelo para fazer predições utilizando o método `predict()`: ex. `y_desconhecido = model.predict(X_desconhecido)`
+- Segregação dos dados: Para que possamos treinar e validar nossos modelos precisamos separar nosso dataset em partes distintas:
+    - *features*(X) e *target*(y): A primeira divisão que precisamos fazer é entre os dados que queremos prever(*target* ou y) e os dados de entrada(*features* ou X). Dessa forma podemos indicar para o modelo que dados queremos extrair e que dados serão o input. ex. 
+    ```python
+    dados = pd.DataFrame(meus_dados)
 
+    X = dados[['var1', 'var2', 'var3', 'var4']]
+    y = dados['var_target']
+    ```
+    - *train* e *test*: Como queremos ter certeza que o nosso modelo irá perfromar bem na vida real precisamos testá-lo utilizando dados que ele nunca viu antes. Para isso criamos amostras aleatórias dos dados de treino(`train`) e de teste(`test`), onde o primeiro servirá de para fazer o `fit()` do modelo e o segundo será utilizado para avaliar o `predict()` do modelo. Existe uma função buit-in to Scikit-Learn para esse propósito chamada `train_test_split()`. ex.
+    ```python
+    from sklearn.model_selection import train_test_split
+
+    # O random_state serve como uma seed permitindo que repita a amostragem aleatória.
+    # O test_size define qual a proporção do dataset deve ser reservada para os testes. Deve ser um número entre 0 e 1
+    Xtrain, Xtest, ytrain, ytest = train_test_split(X, y, random_state=1, test_size=0.3)
+    ```
+- *pipeline*: Para automatizar o tratamento do dataset para treino o Scikit-Learn disponibiliza uma estrutura de *pipeline* que deve ser utilizada na hora do deploy do desafio BTC-2020. Para utilizar essa ferramenta:
+    - Crie uma etapa: Basta criar uma classe que herde de BaseEstimator e TransformerMixin. Essa classe deve implementar os métodos `fit()` e `transform()`.
+    ```python
+    from sklearn.base import BaseEstimator, TransformerMixin
+
+
+    class EtapaDaPipeline(BaseEstimator, TransformerMixin):
+        def fit(self, X, y=None):
+            return self
+        
+        def transform(self, X):
+            # Primeiro realizamos a cópia do dataframe 'X' de entrada
+            data = X.copy()
+
+            # A sua transformação vai aqui            
+
+            # É necessário retornar o dataframe após a transformação
+            return data
+    ```
+    - Definir etapas: Uma vez criadas classes é só passá-las para a *pipeline*. Note que no notebook da Etapa 2 existem etapas que são obrigatórias e que as classes que criou devem ser salvas em um pacote Python antes de serem declarados na pipeline.
+    ```python
+    from sklearn.pipeline import Pipeline
+    
+    my_pipeline = Pipeline(
+    steps=[
+        ('remove_cols', rm_columns), # Exemple da parte 2
+        ('imputer', si), # Exemple da parte 2
+        ('minha_etapa', EtapaDaPipeline()),
+        ('dtc', DecisionTreeClassifier()), # Exemple da parte 2
+    ]
+    )
+    ```
+- Links:
+    - [Introdução a Machine Learning com Scikit-Learn](https://minerandodados.com.br/cafe-com-codigo-06-introducao-machine-learning-com-scikit-learn/) por [Felipe Santana](https://minerandodados.com.br/author/felipesf05/)
+    - [Como criar seu primeiro aplicativo de Machine Learning](https://paulovasconcellos.com.br/como-criar-seu-primeiro-aplicativo-de-machine-learning-7b6af291ba11) por [Paulo Vasconcellos](https://paulovasconcellos.com.br/)
+    - [Documentação Oficial](https://scikit-learn.org/)
+- Livros:
+    - [Python Data Science Handbook](https://github.com/jakevdp/PythonDataScienceHandbook) por Jake VanderPlas
+    - Hands-On Machine Learning with Scikit-Learn and TensorFlow por Aurélien Géron
+    - scikit-learn Cookbook por Julian Avila e Trent Hauck
+
+## Para onde ir agora?
+Os livros indicados tem material mais que suficiente para se ocupar durante as semanas da maratona. Caso novos tópicos entrem em pauta, este repositório será atualizado com materiais novos.  
+Caso queira ferramentas mais avançadas para desenvolver os projetos aqui vai uma lista de bibliotecas que podem ajudar:
+- [missingno](https://github.com/ResidentMario/missingno): Biblioteca para visualização de dados faltantes
+- [Pandas Profiling](https://github.com/pandas-profiling/pandas-profiling): Biblioteca com relatórios detalhados para analise superficial de dados.
+- [XGBoost](https://xgboost.readthedocs.io/en/latest/): Algorítmo optimizado baseado em Gradient Boosting
+
+## Como contribuir?
+Que bom saber que se interessou em contribuir com esse repositório! Para contribuir basta fazer um fork nesse repositório. Após fazer as modificações que achar necessárias faça um Pull Request e assim que o conteúdo for revisado o repositório será atualizado.
+
+## Licença
+
+Este projeto está sobre é considerado Domínio Público - sejo o [LICENSE.md](LICENSE.md) para mais detalhes.
