@@ -101,6 +101,7 @@ Caso queira ferramentas mais avançadas para desenvolver os projetos aqui vai um
 - [missingno](https://github.com/ResidentMario/missingno): Biblioteca para visualização de dados faltantes
 - [Pandas Profiling](https://github.com/pandas-profiling/pandas-profiling): Biblioteca com relatórios detalhados para analise superficial de dados.
 - [XGBoost](https://xgboost.readthedocs.io/en/latest/): Algorítmo optimizado baseado em Gradient Boosting
+- [SMOTE](https://www.kite.com/blog/python/smote-python-imbalanced-learn-for-oversampling/): Algoritmo para balanceamento de dados.
 
 ## Como contribuir?
 Que bom saber que se interessou em contribuir com esse repositório! Para contribuir basta fazer um fork nesse repositório. Após fazer as modificações que achar necessárias faça um Pull Request e assim que o conteúdo for revisado o repositório será atualizado.
