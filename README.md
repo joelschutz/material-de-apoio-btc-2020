@@ -95,6 +95,39 @@ Na hora de criar modelos de Machine Learning existem diversos algorítmos, métr
     - Hands-On Machine Learning with Scikit-Learn and TensorFlow por Aurélien Géron
     - scikit-learn Cookbook por Julian Avila e Trent Hauck
 
+## Como melhoro acuracidade do meu modelo?
+Por mais avançadas que sejam as técnicas utilizadas, nem sempre os nossos modelos vão entregar bons resultados de predição. O grade desafio em Data Science é exatamente identificar quais modificações podem ser feitas para extrair as informações desejadas do dataset analisado. Aqui vão algumas dicas:
+### Faça uma limpeza de qualidade nos dados
+Dificilmente um dataset chegará as nossas mãos sem nenhum problema de dados nulos ou discrepantes. Podem existir valores faltantes, erros de digitação ou até mesmo dados incorretos. Limpar nosso dataset significa retirar ou retificar esses valores para garantir que eles não causem confusão no nosso modelo. 
+
+Algumas estratégias comuns são:
+- Substituir os valores por uma constante - É a forma mais simples e rápida, mas pode introduzir deformações no comportamento das variáveis
+- Substituir os valores por um valor extraido da população como média ou mediana - Faz o mesmo papel da aternativa anterior porém diminui as distorções por usar um valor conformado a população
+- Interpolação - Utiliza os valores anteriores e posteriores para estimar um valor possível. É aplicável apenas quando existe alguma correlação entre as linhas do dataset
+- Excluir valores nulos - Esse método pode evitar a inserção de distorções, mas pode diminuir drasticamente a quantidade de dados para treino.
+- Transformações personalizadas - As melhores soluções não estão na prateleira. Conhecendo o comportamento do seu dataset, substituir valores nulos utilizando algum tipo de lógica pode dar os melhores resultados.
+
+Felizmente existem algumas ferramentas que podem facilitar essa tarefa:
+- [Scikit-learn](https://scikit-learn.org/stable/modules/impute.html)
+- [Pandas](https://pandas.pydata.org/pandas-docs/stable/user_guide/missing_data.html)
+
+### Feature Engeneering
+Para o modelo as features não passam de listas de valores, ele não sabe se aqueles valores são categóricos ou quantitativos, se tem relação entre si ou não. Escolher e modificar as features pode melhorar consideravelmente a performance do modelo. Algumas técnicas:
+- *Feature Transformation*:  
+Consiste em alterar os valores de uma variável para que fique mais claro para o modelo suas características. Essa transformação pode ser feota de forma automatizada ou manualmente. A técnica exata vai depender dos dados que estão sendo analisados e do output desesajado, veja algumas ferramentas para este fim:
+    - [Pre-processing Scikit-learn](https://scikit-learn.org/stable/modules/preprocessing.html)
+- *Feature Construction*:  
+Uma outra forma de deixar as features mais claras para o modelo é criando novas a partir dos dados existentes. Essa técnica permite combinar features relacionadas em uma nova que represente essa relação. Por exemplo, caso esteja analisando as vendas de uma loja onde no data set conste apenas a data e o volume de vendas, criar uma terceira coluna que descreva o dia da semana pode auxiliar o modelo na compreensão da relação entre dia e vendas.  
+Como a aplicação dessa técnica é específica para cada dataset não existem ferramentas automatizadas. Porém algumas boas ferramentas para criar essas colunas são:
+    - [ScikitLearn Pipeline](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html)
+    - [Pandas .apply()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html)
+    - [Pandas .join()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.join.html)
+- *Feature Selection*:  
+Nem sempre precisamos de todas as features do nosso dataset para chegarmos ao resultado esperado. Analisar features que não interferem no resultado que esperamos extrair pode consumir muito tempo de processamento e criar confusão no nosso modelo. Um exemplo seria o número de matrícula dos estudantes no dataset do Desafio 2, o modelo irá buscar alguma relação entre este número e a PERFIL, sendo que não existe nenhuma. Isso pode gerar confusões onde ele imagine que matriculas acima de certo valor tem mais chance de entrar determinado PERFIL, por exemplo.  
+Algumas features podem também ter uma influência muito pequena na decisão final do modelo, desse modo, retirá-las do dataset pode ser interessante para melhorar a performance e acuracidade do seu modelo.  
+Você pode encontrar várias ferramentas para esse tipo de seleção aqui:
+    - [Scikit-Learn Feature Selection](https://scikit-learn.org/stable/modules/feature_selection.html#feature-selection)
+
 ## Para onde ir agora?
 Os livros indicados tem material mais que suficiente para se ocupar durante as semanas da maratona. Caso novos tópicos entrem em pauta, este repositório será atualizado com materiais novos.  
 Caso queira ferramentas mais avançadas para desenvolver os projetos aqui vai uma lista de bibliotecas que podem ajudar:
