@@ -115,13 +115,15 @@ Felizmente existem algumas ferramentas que podem facilitar essa tarefa:
 Para o modelo as features não passam de listas de valores, ele não sabe se aqueles valores são categóricos ou quantitativos, se tem relação entre si ou não. Escolher e modificar as features pode melhorar consideravelmente a performance do modelo. Algumas técnicas:
 - *Feature Transformation*:  
 Consiste em alterar os valores de uma variável para que fique mais claro para o modelo suas características. Essa transformação pode ser feota de forma automatizada ou manualmente. A técnica exata vai depender dos dados que estão sendo analisados e do output desesajado, veja algumas ferramentas para este fim:
-    - [Pre-processing Scikit-learn](https://scikit-learn.org/stable/modules/preprocessing.html)
+    - [Pre-processing Scikit-learn](https://scikit-learn.org/stable/modules/preprocessing.html)  
+    
 - *Feature Construction*:  
 Uma outra forma de deixar as features mais claras para o modelo é criando novas a partir dos dados existentes. Essa técnica permite combinar features relacionadas em uma nova que represente essa relação. Por exemplo, caso esteja analisando as vendas de uma loja onde no data set conste apenas a data e o volume de vendas, criar uma terceira coluna que descreva o dia da semana pode auxiliar o modelo na compreensão da relação entre dia e vendas.  
 Como a aplicação dessa técnica é específica para cada dataset não existem ferramentas automatizadas. Porém algumas boas ferramentas para criar essas colunas são:
     - [ScikitLearn Pipeline](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html)
     - [Pandas .apply()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html)
-    - [Pandas .join()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.join.html)
+    - [Pandas .join()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.join.html)  
+    
 - *Feature Selection*:  
 Nem sempre precisamos de todas as features do nosso dataset para chegarmos ao resultado esperado. Analisar features que não interferem no resultado que esperamos extrair pode consumir muito tempo de processamento e criar confusão no nosso modelo. Um exemplo seria o número de matrícula dos estudantes no dataset do Desafio 2, o modelo irá buscar alguma relação entre este número e a PERFIL, sendo que não existe nenhuma. Isso pode gerar confusões onde ele imagine que matriculas acima de certo valor tem mais chance de entrar determinado PERFIL, por exemplo.  
 Algumas features podem também ter uma influência muito pequena na decisão final do modelo, desse modo, retirá-las do dataset pode ser interessante para melhorar a performance e acuracidade do seu modelo.  
