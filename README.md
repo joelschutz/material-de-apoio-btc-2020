@@ -130,6 +130,91 @@ Algumas features podem também ter uma influência muito pequena na decisão fin
 Você pode encontrar várias ferramentas para esse tipo de seleção aqui:
     - [Scikit-Learn Feature Selection](https://scikit-learn.org/stable/modules/feature_selection.html#feature-selection)
 
+## E essa história de resampling?
+Quando existe uma disparidade entre quantidade de dados das diferentes categorias que queremos prever dizemos que os dados estão desbalanceados, isto é, existem mais amostras de uma categoria que outra. Isso pode causar problemas nas nossas predições porque o modelo pode apresentar uma boa precisão mesmo tendo problema em identificar as classes minoritáras.  
+Uma forma de evitar esse tipo de problema é fazendo um resampling dos nossos dados de treino para que o modelo tenha a mesma quantidade de amostras de cada classe. Existem duas técnicas para fazer esse resampling: **Over-sampling** e **Under-sampling**. Essa imagem ilustra a idéia:  
+
+![Resampling](https://raw.githubusercontent.com/rafjaa/machine_learning_fecib/master/src/static/img/resampling.png)  
+
+Cada um tem suas características:  
+- Over-sampling:  
+Consiste em multiplicar a quantidade de dados da classe minoritária de forma que ela mantenham a mesma proporção que majoritária. Diferentes métodos podem ser utilizados, desde uma simples cópia dos dados até o uso de algorítimos que criam dados novos baseados nos existentes.
+    - Cuidados:  
+    Por inserir dados sintéticos ou duplicados no conjunto de dados, esses métodos não devem ser utilizados nos dados de teste. Utilizar dados sintéticos ou duplicados no treino pode dar uma falsa impressão de acuracidade quando na realidade. Para evitar esse problema, aplique o oversampling apenas nos dados de treino.
+    - Procedimento:
+        - Importe e crie um resampler(SMOTE no exemplo):  
+        ```python
+        from imblearn.over_sampling import SMOTE
+
+        smote = SMOTE()
+        ```
+        - Separe os dados e aplique o resampler apenas nos dados de treino:  
+        ```python
+        from sklearn.model_selection import train_test_split
+        
+        X = df_ibm.drop(['PERFIL'], axis=1).to_numpy()
+        y = df_ibm['PERFIL'].to_numpy()
+
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=500)
+
+        X_train, y_train = smote.fit_resample(X_train, y_train)
+        ```
+        - Treine o modelo(DecisonTreeClassifier no exemplo) com os dados balanceados e teste com os dados desbalanceados:
+        ```python
+        from sklearn.tree import DecisionTreeClassifier
+
+        model = DecisionTreeClassifier(random_state=0)
+        model.fit(X_train, y_train)
+        y_predic = model.predict(X_test)
+        ```
+        - Veja os resultados:
+        ```python
+        from sklearn.metrics import accuracy_score
+
+        print(accuracy_score(y_test, y_predic))
+        ```  
+    - Métodos:
+        - [imblearn](https://imbalanced-learn.readthedocs.io/en/stable/api.html#module-imblearn.over_sampling)
+- Under-sampling:  
+É o inverso do over-sampling, consiste em omitir dados das categorias majoritárias de forma que essas mantenham a mesma proporção que as minoritárias. Diferentes algorítmos vão usar métodos diferentes para selecionar as amostras, os resultados podem variar bastante de uma abordagem para outra dependendo do modelo, vale testar diferentes combinações.  
+    - Cuidados:  
+    Esse tipo de método pode reduzir drasticamente a quantidade de dados utilizados no treinamento, isso pode diminuir o desempenho do seu modelo. Vale consultar a documentação para encontrar configurações que diminuam esses efeitos.  
+    Mesmo que esse método não polua os dados, não é aconselhável aplicar esse método nos dados de teste para evitar overfitting.
+    - Procedimento:
+        - Importe e crie um resampler(SMOTE no exemplo):  
+        ```python
+        from imblearn.under_sampling import RandomUnderSampler
+
+        random_us = RandomUnderSampler()
+        ```
+        - Separe os dados e aplique o resampler apenas nos dados de treino:  
+        ```python
+        from sklearn.model_selection import train_test_split
+        
+        X = df_ibm.drop(['PERFIL'], axis=1).to_numpy()
+        y = df_ibm['PERFIL'].to_numpy()
+
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=500)
+
+        X_train, y_train = random_us.fit_resample(X_train, y_train)
+        ```
+        - Treine o modelo(DecisonTreeClassifier no exemplo) com os dados balanceados e teste com os dados desbalanceados:
+        ```python
+        from sklearn.tree import DecisionTreeClassifier
+
+        model = DecisionTreeClassifier(random_state=0)
+        model.fit(X_train, y_train)
+        y_predic = model.predict(X_test)
+        ```
+        - Veja os resultados:
+        ```python
+        from sklearn.metrics import accuracy_score
+
+        print(accuracy_score(y_test, y_predic))
+        ```  
+    - Métodos:
+        - [imblearn](https://imbalanced-learn.readthedocs.io/en/stable/api.html#module-imblearn.under_sampling)
+
 ## Para onde ir agora?
 Os livros indicados tem material mais que suficiente para se ocupar durante as semanas da maratona. Caso novos tópicos entrem em pauta, este repositório será atualizado com materiais novos.  
 Caso queira ferramentas mais avançadas para desenvolver os projetos aqui vai uma lista de bibliotecas que podem ajudar:
