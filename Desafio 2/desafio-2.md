@@ -3,8 +3,8 @@ No Desafio 2 o nosso objetivo é analisar um dataset de estudantes da Uninassal 
 É um simples problema de Classificação onde vamos utilizar Aprendizado Supervisionado para encontrar o perfil de cada estudante.
 
 - [Repositório do Desafio 2](https://github.com/maratonadev-br/desafio-2-2020)
-- [Relatório do dataset]()
-- [Minha solução]()
+- [Relatório do dataset](https://github.com/joelschutz/material-de-apoio-btc-2020/blob/master/Desafio%202/Relat%C3%B3rio-Desafio-2.html)
+- [Minha solução](https://www.kaggle.com/joelschutz/maratona-btc-2020-desafio-2)
 
 ## Onde começar?
 Um bom lugar para começar é se familiarizando com as ferramentas.
