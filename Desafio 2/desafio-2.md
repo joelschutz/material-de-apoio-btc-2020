@@ -1,3 +1,8 @@
+<div align="center">
+  <img width="20%" src="https://maratona.dev/static/icons/2-ws.png" alt="Desafio #2 | UNINASSAU" />
+
+</div>
+
 # Desafio 2  
 No Desafio 2 o nosso objetivo é analisar um dataset de estudantes da Uninassal e a partir desses dados identificar se eles tem dificuldade ou não nas disciplinas de Humanas e Exatas.  
 É um simples problema de Classificação onde vamos utilizar Aprendizado Supervisionado para encontrar o perfil de cada estudante.

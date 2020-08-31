@@ -1,11 +1,13 @@
 <div align="center">
   <img width="20%" src="https://maratona.dev/static/icons/3-wd.png" alt="Desafio #3 | FIAP" />
-  <p>Desafio #3 | FIAP</p>
+
 </div>
 
-## Desafio de negócio
+# Desafio 3
 
 O desafio consiste em criar uma ferramenta capaz de acelerar e dinamizar os processos de aprendizagem, ajudando estudantes a encontrar outras fontes de pesquisa, novos conteúdos, exemplos e modelos para seus estudos. Utilizando linguagem natural a ferramenta será capaz de buscar e sugerir conteúdos alternativos, como vídeos, podcasts, e-books e demais fontes de informações, para que estudantes possam aprofundar seus estudos a partir de indicações de texto do próprio estudante.
+
+- [Repositório do Desafio 3](https://github.com/maratonadev-br/desafio-3-2020)
 
 ## Objetivo principal
 
@@ -74,5 +76,3 @@ Após a criação dos documentos, você deverá criar uma coleção no Watson Di
 - "História do Brasil"
 
 _Dica: a etapa do carregamento dos documentos no Watson Discovery pode demorar alguns minutos e às vezes falhar. É recomendado que seja feito o upload de apenas um documento por vez para garantir que não haja nenhuma falha._
-
-## [LICENSE](./LICENSE)

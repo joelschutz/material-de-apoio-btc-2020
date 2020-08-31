@@ -1,3 +1,8 @@
+<div align="center">
+  <img width="20%" src="https://maratona.dev/static/icons/4-ws.png" alt="Desafio #3 | AlgarTech" />
+
+</div>
+
 # Desafio 4
 Este desafio é muito parecido com o [Desafio 2](https://github.com/joelschutz/material-de-apoio-btc-2020/blob/master/Desafio%202/desafio-2.md), ele consiste em identificar dentro de uma lista de candidatos da Algar quais foram contratados para a vaga ou não. Este porém vem com os seus próprios desafios visto que a quantidade de amostras é menor e a de features é maior que a do desafio anterior.
 
