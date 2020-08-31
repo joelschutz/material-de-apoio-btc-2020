@@ -1,5 +1,7 @@
 <div align="center">
   <img width="20%" src="https://maratona.dev/static/icons/3-wd.png" alt="Desafio #3 | FIAP" />
+  
+  [![Discord](https://img.shields.io/discord/741438579812597780?label=BTC2020&style=for-the-badge&color=9b73cd)](https://bit.ly/comunidade_btc2020)
 
 </div>
 
