@@ -1,6 +1,8 @@
 # Material de Apoio - BTC-2020
 Este repositório contém materiais de apoio para a Maratona Behind The Code 2020
 
+[![Discord](https://img.shields.io/discord/741438579812597780?label=BTC2020&style=for-the-badge&color=9b73cd)](https://bit.ly/comunidade_btc2020)
+
 ## Desafios
 
 - [Desafio 1](https://github.com/CodandoErrado/desafio-1-btc-imagens) (Não tem nada nesse repósitório ainda sobre esse desafio, esse link vai te levar pro repositório do CodandoErrado com vários materiais para o desafio 1)
