@@ -1,6 +1,6 @@
 <div align="center">
   <img width="20%" src="https://maratona.dev/static/icons/3-wd.png" alt="Desafio #3 | FIAP" />
-
+  
 </div>
 
 # Desafio 3
